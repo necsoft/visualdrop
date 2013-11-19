@@ -35,7 +35,7 @@
 
 void draw() {
 //logs();
-  background(230);
+  background(0);
 
   BPM.tempo = BPM.tempoAproximado;
   BPM.run();
@@ -54,8 +54,14 @@ void draw() {
     visuals.show03();
   }  
 
+  if (oscFeed.flash01 == 1) {
+    visuals.flash01();
+  } 
 
 
+  if (oscFeed.strobo01 == 1) {
+    visuals.strobo01();
+  } 
 
 }
 

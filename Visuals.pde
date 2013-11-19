@@ -38,14 +38,49 @@
   void show03(){
     if(BPM.cambiobeat){
      desfaserandom = random(TWO_PI);
-    }
-    
-    fill(#00FF88);
-    arc(width/2, height/2, BPM.momentoBeat*width, BPM.momentoBeat*width,desfaserandom,(BPM.momentoBeat*TWO_PI)+desfaserandom);
-  }
+   }
+
+   fill(#00FF88);
+   arc(width/2, height/2, BPM.momentoBeat*width, BPM.momentoBeat*width,desfaserandom,(BPM.momentoBeat*TWO_PI)+desfaserandom);
+ }
 
 
 
-  
-  
+
+
+
+
+
+
+
+ void flash01(){
+  fill(255);
+  rect(0, 0, width, height);
+}
+
+
+void strobo01(){
+  if(frameCount % 10 == 0){
+    fill(255);
+    rect(0, 0, width, height);
+    }else{
+     fill(0);
+     rect(0, 0, width, height);   
+   }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

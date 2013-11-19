@@ -19,6 +19,9 @@
   float visual02Bang;
   float visual03Bang;
 
+  float flash01;
+  float strobo01;
+
 
 
 
@@ -108,5 +111,31 @@
       visual03Bang = theOscMessage.get(0).floatValue();
     }
   }
+
+
+  if (theOscMessage.checkAddrPattern("/FX/flash")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      flash01 = theOscMessage.get(0).floatValue();
+    }
+  }
+
+  if (theOscMessage.checkAddrPattern("/FX/strobo1x")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+        strobo01 = theOscMessage.get(0).floatValue();
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 };
