@@ -24,11 +24,17 @@
   float syncTime;
   float msXBeat;
 
+  //Variables para el tap
+  float [] tapTime;
+  float [] tapDistance;
+  int indiceTap=0;
+  float tempoAproximado;
+
+
+
   //Booleanos de cambio de compas
   Boolean cambiocompas=false;
   Boolean cambiobeat=false;
-
-
 
   //Importado para mandar los momentos a los pills
   OscFeed oscFeed;
@@ -42,11 +48,23 @@
     syncTime = 0;
     startTime = millis();
     msXBeat = 1000/(tempo/60.0);
+
+    //Inicializo el tapper
+    tapTime = new float[4];
+    tapDistance = new float[4];
+    for (int i=0;i<tapTime.length;i++) {
+      tapTime[i] = 0;
+    }
+
+    for (int i=0;i<tapDistance.length;i++) {
+      tapDistance[i] = 0;
+    }
   };
 
 
   void run() {
     msXBeat = 1000/(tempo/60.0);
+
     momentoBeat = (millis() - startTime) / msXBeat;
     momentoCompas = ( (millis() - startTime) / msXBeat) / numeradorCompas;
 
@@ -55,16 +73,47 @@
     if(cantidadCompases != int(int(momentoBeat)/numeradorCompas)){
       //println("Cambio de compas");
       cambiocompas=true;
-    }else{
-      cambiocompas=false;
-    }
+      }else{
+        cambiocompas=false;
+      }
 
 
     //Checkeo si en esta vuelta se cambio el beat
     if(cantidadBeats != int(momentoBeat)){
       cambiobeat=true;
-    }else{
-      cambiobeat=false;
+      }else{
+        cambiobeat=false;
+      }
+
+      cantidadBeats = int(momentoBeat);
+      cantidadCompases = int(int(momentoBeat)/numeradorCompas);
+
+      momentoBeat -= int(momentoBeat);
+      momentoCompas -= int(momentoCompas);
+
+    }
+
+    void syncBPM(float syncTime) {
+      startTime = syncTime;
+    }
+
+    
+
+    void tap(){
+      tapDistance[indiceTap] = millis() - tapTime[indiceTap];
+
+      if (indiceTap<tapTime.length-1) {
+        indiceTap++;
+      }
+      else {
+        indiceTap=0;
+      }
+
+      tempoAproximado = (1000/((tapDistance[0] + tapDistance[1] + tapDistance[2] + tapDistance[3])/4))*60;
+      tapTime[indiceTap]=millis();
+
+      println("Tempo Aproximado: "+tempoAproximado);
+      tempo = tempoAproximado;
     }
 
 
@@ -72,29 +121,5 @@
 
 
 
-    cantidadBeats = int(momentoBeat);
-    cantidadCompases = int(int(momentoBeat)/numeradorCompas);
 
-
-
-    momentoBeat -= int(momentoBeat);
-    momentoCompas -= int(momentoCompas);
-
-
-
-    // println("============================================");
-    // println("momentoBeat"+momentoBeat);
-    // println("momentoCompas"+momentoCompas);
-    // println("cantidadBeats"+cantidadBeats);
-    // println("cantidadCompases"+cantidadCompases);
-    // println("============================================");
-
-  }
-
-  void syncBPM(float syncTime) {
-    startTime = syncTime;
-  }
-
-  void showBPMmonitor() {
-  }
-};
+  };

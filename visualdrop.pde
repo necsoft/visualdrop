@@ -21,7 +21,7 @@
 
 
 
- float tempo = 200;
+ float tempo = 123;
  float numeradorCompas = 4;
 
 
@@ -30,16 +30,16 @@
 
   BPM = new BPM(tempo, numeradorCompas,oscFeed);
   visuals = new Visuals(BPM);
-  oscFeed = new OscFeed();
+  oscFeed = new OscFeed(BPM);
 }
 
 void draw() {
-  logs();
+//logs();
   background(230);
 
-  BPM.tempo = tempo;
+  BPM.tempo = BPM.tempoAproximado;
   BPM.run();
-  oscFeed.mandarMensajeInt("/BPM/tempo_actual",int(tempo));
+  oscFeed.mandarMensajeInt("/BPM/tempo_actual",int(BPM.tempo));
 
 
   if (oscFeed.visual01Bang == 1) {
@@ -59,7 +59,8 @@ void draw() {
 
 
 void keyPressed() {
-  BPM.syncBPM(millis());
+  //BPM.syncBPM(millis());
+  BPM.tap();
 }
 
 

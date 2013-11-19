@@ -10,6 +10,7 @@
  class OscFeed {
 
   OscP5 oscP5;
+  BPM BPM;
   NetAddress myRemoteLocation;
 
 
@@ -21,9 +22,10 @@
 
 
 
-  OscFeed() {
+  OscFeed(BPM BPM) {
     oscP5 = new OscP5(this, 12000);
     myRemoteLocation = new NetAddress("192.168.0.3", 12001);
+    this.BPM = BPM;
   }
 
 
@@ -54,19 +56,30 @@
 
   if (theOscMessage.checkAddrPattern("/BPM/sync")==true) {
     if (theOscMessage.checkTypetag("f")) {
-      BPM.syncBPM(millis());
+      if(theOscMessage.get(0).floatValue() == 1){
+        BPM.syncBPM(millis());
+      }
+    }
+  }
+
+
+  if (theOscMessage.checkAddrPattern("/BPM/tap")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      if(theOscMessage.get(0).floatValue() == 1){
+        BPM.tap();
+      }
     }
   }
 
   if (theOscMessage.checkAddrPattern("/BPM/tempo_aumentar")==true) {
     if (theOscMessage.checkTypetag("f")) {
-      tempo = tempo + theOscMessage.get(0).floatValue();
+      BPM.tempoAproximado = int(BPM.tempoAproximado) + theOscMessage.get(0).floatValue();
     }
   }
 
   if (theOscMessage.checkAddrPattern("/BPM/tempo_disminuir")==true) {
     if (theOscMessage.checkTypetag("f")) {
-      tempo = tempo - theOscMessage.get(0).floatValue();
+      BPM.tempoAproximado = int(BPM.tempoAproximado) - theOscMessage.get(0).floatValue();
     }
   }
 
