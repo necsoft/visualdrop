@@ -7,7 +7,12 @@
 
  class Visuals {
 
+
   BPM BPM;
+
+  float desfaserandom = random(TWO_PI);
+
+
 
   Visuals(BPM BPM) {
     this.BPM = BPM;
@@ -30,7 +35,17 @@
   
   
   
-  
+  void show03(){
+    if(BPM.cambiobeat){
+     desfaserandom = random(TWO_PI);
+    }
+    
+    fill(#00FF88);
+    arc(width/2, height/2, BPM.momentoBeat*width, BPM.momentoBeat*width,desfaserandom,(BPM.momentoBeat*TWO_PI)+desfaserandom);
+  }
+
+
+
   
   
 };

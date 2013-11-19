@@ -18,8 +18,7 @@
   float momentoCompas;
   int cantidadBeats;
   int cantidadCompases;
-
-  //
+  
   float startTime;
   float syncTime;
   float msXBeat;
@@ -28,7 +27,7 @@
   float [] tapTime;
   float [] tapDistance;
   int indiceTap=0;
-  float tempoAproximado;
+  float tempoAproximado=120;
 
 
 

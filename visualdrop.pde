@@ -21,7 +21,7 @@
 
 
 
- float tempo = 123;
+ float tempo = 120;
  float numeradorCompas = 4;
 
 
@@ -50,7 +50,9 @@ void draw() {
     visuals.show02();
   }
 
-  
+  if (oscFeed.visual03Bang == 1) {
+    visuals.show03();
+  }  
 
 
 
