@@ -37,15 +37,9 @@ void draw() {
   logs();
   background(230);
 
-
-
   BPM.tempo = tempo;
   BPM.run();
   oscFeed.mandarMensajeInt("/BPM/tempo_actual",int(tempo));
-
-
-
-
 
 
   if (oscFeed.visual01Bang == 1) {
@@ -58,19 +52,22 @@ void draw() {
 
   
 
-  }
-
-
-  void keyPressed() {
-    BPM.syncBPM(millis());
-  }
 
 
 
+}
 
 
-  //Estos son logs para debuggear
-  void logs(){
+void keyPressed() {
+  BPM.syncBPM(millis());
+}
+
+
+
+
+
+//Estos son logs para debuggear
+void logs(){
 
   println("Tempo Actual: "+BPM.tempo);
 
@@ -83,10 +80,5 @@ void draw() {
   if (BPM.cambiobeat == true){
     println("Cambio de beat");
   }  
-
-
-
-
-
 
 }

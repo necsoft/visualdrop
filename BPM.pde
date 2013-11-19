@@ -46,6 +46,7 @@
 
 
   void run() {
+    msXBeat = 1000/(tempo/60.0);
     momentoBeat = (millis() - startTime) / msXBeat;
     momentoCompas = ( (millis() - startTime) / msXBeat) / numeradorCompas;
 

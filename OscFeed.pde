@@ -46,7 +46,18 @@
 
   void myPatterns(OscMessage theOscMessage) {
 
-  // Manejo del tempo
+
+  /*
+  Patterns de tempo
+  */
+
+
+  if (theOscMessage.checkAddrPattern("/BPM/sync")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      BPM.syncBPM(millis());
+    }
+  }
+
   if (theOscMessage.checkAddrPattern("/BPM/tempo_aumentar")==true) {
     if (theOscMessage.checkTypetag("f")) {
       tempo = tempo + theOscMessage.get(0).floatValue();
@@ -59,6 +70,13 @@
     }
   }
 
+
+
+
+
+  /*
+  Patterns de visuales
+  */
 
   if (theOscMessage.checkAddrPattern("/visualbang/1/1")==true) {
     if (theOscMessage.checkTypetag("f")) {
