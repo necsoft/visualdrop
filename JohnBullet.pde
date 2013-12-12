@@ -1,0 +1,10 @@
+class JohnBullet{
+
+
+JohnBullet(){
+
+}
+
+
+
+}

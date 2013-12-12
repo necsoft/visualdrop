@@ -18,6 +18,12 @@
   float visual01Bang;
   float visual02Bang;
   float visual03Bang;
+  float visual04Bang;
+  float visual05Bang;
+  float visual06Bang;
+  float visual07Bang;
+  float visual08Bang;
+  float visual09Bang;
 
   float flash01;
   float strobo01;
@@ -25,9 +31,9 @@
 
 
 
-  OscFeed(BPM BPM) {
-    oscP5 = new OscP5(this, 12000);
-    myRemoteLocation = new NetAddress("192.168.0.3", 12001);
+  OscFeed(String remoteLocation,int thisPort,int thatPort,BPM BPM) {
+    oscP5 = new OscP5(this, thisPort);//12000
+    myRemoteLocation = new NetAddress(remoteLocation, thatPort);//12001
     this.BPM = BPM;
   }
 
@@ -112,6 +118,62 @@
     }
   }
 
+  if (theOscMessage.checkAddrPattern("/visualbang/1/4")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      visual04Bang = theOscMessage.get(0).floatValue();
+    }
+  }
+
+  if (theOscMessage.checkAddrPattern("/visualbang/1/5")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      visual05Bang = theOscMessage.get(0).floatValue();
+    }
+  }
+
+  if (theOscMessage.checkAddrPattern("/visualbang/1/6")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      visual06Bang = theOscMessage.get(0).floatValue();
+    }
+  }
+
+  if (theOscMessage.checkAddrPattern("/visualbang/1/7")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      visual07Bang = theOscMessage.get(0).floatValue();
+    }
+  }
+
+
+  if (theOscMessage.checkAddrPattern("/visualbang/1/8")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      visual08Bang = theOscMessage.get(0).floatValue();
+    }
+  }
+
+  if (theOscMessage.checkAddrPattern("/visualbang/1/9")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      visual09Bang = theOscMessage.get(0).floatValue();
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //Efectos
 
   if (theOscMessage.checkAddrPattern("/FX/flash")==true) {
     if (theOscMessage.checkTypetag("f")) {
