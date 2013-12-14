@@ -43,7 +43,7 @@
 
   void oscEvent(OscMessage theOscMessage) {
     myPatterns(theOscMessage);
-    println("### Recibido mensaje con la siguiente ruta:"+theOscMessage.addrPattern());
+    println("### Recibido ------>"+theOscMessage.addrPattern());
   }
 
 
@@ -158,21 +158,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   //Efectos
 
   if (theOscMessage.checkAddrPattern("/FX/flash")==true) {
@@ -186,16 +171,6 @@
         strobo01 = theOscMessage.get(0).floatValue();
     }
   }
-
-
-
-
-
-
-
-
-
-
 
 
 

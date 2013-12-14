@@ -24,6 +24,7 @@ class Vd{
 	float numeradorCompas;
 
 
+
 	Vd(int _thisPort,int _thatPort, String _remoteLocation, int _tempo, int _numeradorCompas){
 
 		thisPort = _thisPort;
@@ -33,8 +34,12 @@ class Vd{
 		numeradorCompas = _numeradorCompas;
 
 		BPM = new BPM(tempo, numeradorCompas,oscFeed);
-		visuals = new Visuals(BPM);
+		colorFeed = new ColorFeed();
+		
+		visuals = new Visuals(BPM,colorFeed);
 		oscFeed = new OscFeed(remoteLocation,thisPort,thatPort,BPM);
+
+		
 
 	}
 
@@ -43,13 +48,17 @@ class Vd{
 
 
 	void run(){
-		background(0);
-		BPM.tempo = BPM.tempoAproximado;
-		BPM.run();
-		if(frameCount%30==0){
-			oscFeed.mandarMensajeInt("/BPM/tempo_actual",int(BPM.tempoAproximado));
+		if(visuals.showBackground == true){
+			background(0);
 		}
-		checkPatterns();
+
+		BPM.tempo = BPM.tempoAproximado; //
+		BPM.run();
+
+		sendTempo();//Manda el tempo aproximado a TouchOSC
+		checkPatterns();//Checkea las rutas OSC
+
+		visuals.passMe(colorFeed);
 	}
 
 
@@ -60,41 +69,61 @@ class Vd{
 
 
 
+
+
+
+
+	//-----------------------------------------------//
+	// SendTempo
+	//-----------------------------------------------//
+
+	void sendTempo(){
+		if(frameCount%30==0){
+			oscFeed.mandarMensajeInt("/BPM/tempo_actual",int(BPM.tempoAproximado));
+		}
+	}
+
+
+
+	//-----------------------------------------------//
+	// CheckPatterns
+	//-----------------------------------------------//
+
 	void checkPatterns(){
 		if (oscFeed.visual01Bang == 1) {
-			visuals.show01();
+			visuals.visual01.show();
 		}
 
 		if (oscFeed.visual02Bang == 1) {
-			visuals.show02();
+			visuals.visual02.show();
 		}
 
 		if (oscFeed.visual03Bang == 1) {
-			visuals.show03();
+			visuals.visual03.show();
 		}  
 
 		if (oscFeed.visual04Bang == 1) {
-			visuals.show04();
+			visuals.visual04.show();
 		}
 
 		if (oscFeed.visual05Bang == 1) {
-			visuals.show05();
+			visuals.visual05.show();
 		}
 
 		if (oscFeed.visual06Bang == 1) {
-			visuals.show06();
+			visuals.visual06.show();
 		}  
 
 		if (oscFeed.visual07Bang == 1) {
-			visuals.show07();
+			visuals.visual07.show();
 		}
 
 		if (oscFeed.visual08Bang == 1) {
-			visuals.show08();
+			
 		}
 
 		if (oscFeed.visual09Bang == 1) {
-			visuals.show09();
+			
 		}  
 
 		if (oscFeed.flash01 == 1) {
@@ -102,10 +131,9 @@ class Vd{
 		} 
 
 		if (oscFeed.strobo01 == 1) {
-			visuals.strobo01();
+			
 		} 
 	}
-
 
 
 }

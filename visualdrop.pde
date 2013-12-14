@@ -19,7 +19,9 @@ de disparar los parametros que cambian el flujo.
 import oscP5.*;
 import netP5.*;
 import ddf.minim.*;
+// import fullscreen.*; 
 
+// FullScreen fs; 
 Vd vd;
 
 // Inicializacion ---------------------------------------------//
@@ -27,7 +29,7 @@ Vd vd;
 //OSC
 int thisPort = 12000;
 int thatPort = 12001;
-String remoteLocation = "192.168.0.3";
+String remoteLocation = "169.254.44.158";
 
 //BPM
 int tempo = 120;
@@ -37,8 +39,9 @@ int numeradorCompas = 4;
 
 
 void setup() {
-  size(800, 600);
+  size(800 , 600);
   vd = new Vd(thisPort,thatPort,remoteLocation,tempo,numeradorCompas);
+
 }
 
 void draw() {
