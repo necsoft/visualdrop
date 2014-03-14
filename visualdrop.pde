@@ -15,21 +15,21 @@ Actualmente esta funcionando con un patch de toucOSC que es el que se encarga
 de disparar los parametros que cambian el flujo. 
  
 ///////////////////////////////////////////////////////////////////////////*/
-
+import processing.opengl.*;
 import oscP5.*;
 import netP5.*;
 import ddf.minim.*;
-// import fullscreen.*; 
 
 // FullScreen fs; 
 Vd vd;
 
-// Inicializacion ---------------------------------------------//
+// Constantes ---------------------------------------------//
 
-//OSC
-int thisPort = 12000;
-int thatPort = 12001;
-String remoteLocation = "169.254.44.158";
+final int SECOND_SCREEN_WIDTH = 1920;
+final int SECOND_SCREEN_HEIGHT = 1080;
+final int MAC_RECEIVE_PORT = 12000;
+final int IPAD_RECEIVE_PORT = 12001;
+final String IPAD_IP = "192.168.0.103";
 
 //BPM
 int tempo = 120;
@@ -39,11 +39,23 @@ int numeradorCompas = 4;
 
 
 void setup() {
-  size(800 , 600);
-  vd = new Vd(thisPort,thatPort,remoteLocation,tempo,numeradorCompas);
+  size(SECOND_SCREEN_WIDTH , SECOND_SCREEN_HEIGHT,OPENGL);
+  frame.setLocation(1440,0);
+  vd = new Vd(MAC_RECEIVE_PORT,IPAD_RECEIVE_PORT,IPAD_IP,tempo,numeradorCompas);
 
 }
 
 void draw() {
   vd.run();
 }
+
+
+
+// public void init(){
+//   frame.removeNotify();
+//   frame.setUndecorated(true);
+//   frame.setAlwaysOnTop(true); 
+//   frame.addNotify();
+//   super.init();
+// }
+
