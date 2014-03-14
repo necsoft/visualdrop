@@ -23,8 +23,6 @@ class Vd{
 	float tempo;
 	float numeradorCompas;
 
-
-
 	Vd(int _tempo, int _numeradorCompas){
 		tempo = _tempo;
 		numeradorCompas = _numeradorCompas;
@@ -36,10 +34,6 @@ class Vd{
 		oscFeed = new OscFeed(BPM);
 
 	}
-
-
-
-
 
 	void run(){
 		if(visuals.showBackground == true){
@@ -67,13 +61,11 @@ class Vd{
 	}
 
 
-
 	//-----------------------------------------------//
 	// CheckPatterns
 	//-----------------------------------------------//
 
 	void checkPatterns(){
-
 
 		//Check toggles
 		for (int i = 0; i < GRID_TOGGLE_WIDTH; ++i) {
@@ -135,9 +127,6 @@ class Vd{
 
 			}
 		}
-
-
-
 
 		if (oscFeed.flash01 == 1) {
 			visuals.flash01();

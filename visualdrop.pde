@@ -46,8 +46,8 @@ int numeradorCompas = 4;
 
 
 void setup() {
-  size(SECOND_SCREEN_WIDTH/2 , SECOND_SCREEN_HEIGHT/2,OPENGL);
-  // frame.setLocation(FIRST_MONITOR_WIDTH,0);
+  size(SECOND_SCREEN_WIDTH , SECOND_SCREEN_HEIGHT,OPENGL);
+  frame.setLocation(FIRST_MONITOR_WIDTH,0);
   vd = new Vd(tempo,numeradorCompas);
 
 }
@@ -58,11 +58,11 @@ void draw() {
 
 
 
-// public void init(){
-//   frame.removeNotify();
-//   frame.setUndecorated(true);
-//   frame.setAlwaysOnTop(true); 
-//   frame.addNotify();
-//   super.init();
-// }
+public void init(){
+  frame.removeNotify();
+  frame.setUndecorated(true);
+  frame.setAlwaysOnTop(true); 
+  frame.addNotify();
+  super.init();
+}
 
