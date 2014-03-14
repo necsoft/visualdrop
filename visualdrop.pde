@@ -15,6 +15,7 @@ Actualmente esta funcionando con un patch de toucOSC que es el que se encarga
 de disparar los parametros que cambian el flujo. 
  
 ///////////////////////////////////////////////////////////////////////////*/
+
 import processing.opengl.*;
 import oscP5.*;
 import netP5.*;
@@ -25,6 +26,7 @@ Vd vd;
 
 // Constantes ---------------------------------------------//
 
+final int FIRST_MONITOR_WIDTH = 1440;
 final int SECOND_SCREEN_WIDTH = 1920;
 final int SECOND_SCREEN_HEIGHT = 1080;
 final int MAC_RECEIVE_PORT = 12000;
@@ -40,7 +42,7 @@ int numeradorCompas = 4;
 
 void setup() {
   size(SECOND_SCREEN_WIDTH , SECOND_SCREEN_HEIGHT,OPENGL);
-  frame.setLocation(1440,0);
+  frame.setLocation(FIRST_MONITOR_WIDTH,0);
   vd = new Vd(MAC_RECEIVE_PORT,IPAD_RECEIVE_PORT,IPAD_IP,tempo,numeradorCompas);
 
 }
