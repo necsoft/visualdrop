@@ -33,6 +33,11 @@ final int MAC_RECEIVE_PORT = 12000;
 final int IPAD_RECEIVE_PORT = 12001;
 final String IPAD_IP = "192.168.0.103";
 
+final int GRID_BANG_WIDTH = 7;
+final int GRID_BANG_HEIGHT = 3;
+final int GRID_TOGGLE_WIDTH = 7;
+final int GRID_TOGGLE_HEIGHT = 3;
+
 //BPM
 int tempo = 120;
 int numeradorCompas = 4;
@@ -41,9 +46,9 @@ int numeradorCompas = 4;
 
 
 void setup() {
-  size(SECOND_SCREEN_WIDTH , SECOND_SCREEN_HEIGHT,OPENGL);
-  frame.setLocation(FIRST_MONITOR_WIDTH,0);
-  vd = new Vd(MAC_RECEIVE_PORT,IPAD_RECEIVE_PORT,IPAD_IP,tempo,numeradorCompas);
+  size(SECOND_SCREEN_WIDTH/2 , SECOND_SCREEN_HEIGHT/2,OPENGL);
+  // frame.setLocation(FIRST_MONITOR_WIDTH,0);
+  vd = new Vd(tempo,numeradorCompas);
 
 }
 

@@ -25,11 +25,7 @@ class Vd{
 
 
 
-	Vd(int _thisPort,int _thatPort, String _remoteLocation, int _tempo, int _numeradorCompas){
-
-		thisPort = _thisPort;
-		thatPort = _thatPort;
-		remoteLocation = _remoteLocation;
+	Vd(int _tempo, int _numeradorCompas){
 		tempo = _tempo;
 		numeradorCompas = _numeradorCompas;
 
@@ -37,9 +33,7 @@ class Vd{
 		colorFeed = new ColorFeed();
 		
 		visuals = new Visuals(BPM,colorFeed);
-		oscFeed = new OscFeed(remoteLocation,thisPort,thatPort,BPM);
-
-		
+		oscFeed = new OscFeed(BPM);
 
 	}
 
@@ -62,17 +56,6 @@ class Vd{
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
 	//-----------------------------------------------//
 	// SendTempo
 	//-----------------------------------------------//
@@ -90,50 +73,76 @@ class Vd{
 	//-----------------------------------------------//
 
 	void checkPatterns(){
-		if (oscFeed.visual01Bang == 1) {
-			visuals.visual01.show();
+
+
+		//Check toggles
+		for (int i = 0; i < GRID_TOGGLE_WIDTH; ++i) {
+			for (int j = 0; j < GRID_TOGGLE_HEIGHT; ++j) {
+				if (oscFeed.visualGridToggle[i][j] == 1){
+					if(i == 0 && j == 0){
+						visuals.visual01.show();
+					}
+					if(i == 1 && j == 0){
+						visuals.visual02.show();
+					}
+					if(i == 2 && j == 0){
+						visuals.visual03.show();
+					}					
+					if(i == 3 && j == 0){
+						visuals.visual04.show();
+					}
+					if(i == 4 && j == 0){
+						visuals.visual05.show();
+					}	
+					if(i == 5 && j == 0){
+						visuals.visual06.show();
+					}		
+					if(i == 6 && j == 0){
+						visuals.visual07.show();
+					}
+				}
+
+			}
 		}
 
-		if (oscFeed.visual02Bang == 1) {
-			visuals.visual02.show();
+
+		//Check bangs
+		for (int i = 0; i < GRID_BANG_WIDTH; ++i) {
+			for (int j = 0; j < GRID_BANG_HEIGHT; ++j) {
+				if (oscFeed.visualGridBang[i][j] == 1){
+					if(i == 0 && j == 0){
+						visuals.visual01.show();
+					}
+					if(i == 1 && j == 0){
+						visuals.visual02.show();
+					}
+					if(i == 2 && j == 0){
+						visuals.visual03.show();
+					}					
+					if(i == 3 && j == 0){
+						visuals.visual04.show();
+					}
+					if(i == 4 && j == 0){
+						visuals.visual05.show();
+					}	
+					if(i == 5 && j == 0){
+						visuals.visual06.show();
+					}		
+					if(i == 6 && j == 0){
+						visuals.visual07.show();
+					}
+				}
+
+			}
 		}
 
-		if (oscFeed.visual03Bang == 1) {
-			visuals.visual03.show();
-		}  
 
-		if (oscFeed.visual04Bang == 1) {
-			visuals.visual04.show();
-		}
 
-		if (oscFeed.visual05Bang == 1) {
-			visuals.visual05.show();
-		}
-
-		if (oscFeed.visual06Bang == 1) {
-			visuals.visual06.show();
-		}  
-
-		if (oscFeed.visual07Bang == 1) {
-			visuals.visual07.show();
-		}
-
-		if (oscFeed.visual08Bang == 1) {
-			
-		}
-
-		if (oscFeed.visual09Bang == 1) {
-			
-		}  
 
 		if (oscFeed.flash01 == 1) {
 			visuals.flash01();
 		} 
 
-		if (oscFeed.strobo01 == 1) {
-			
-		} 
 	}
-
 
 }

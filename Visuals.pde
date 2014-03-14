@@ -5,7 +5,7 @@
  *///////////////////////////////////////////////////////////////////////////
 
 
- class Visuals {
+ class Visuals{
 
   Visual01 visual01;
   Visual02 visual02;
@@ -49,6 +49,10 @@
   void passMe(ColorFeed _colorFeed){
     colorFeed = _colorFeed;
   }
+
+
+
+
 
 
 

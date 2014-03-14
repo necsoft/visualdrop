@@ -14,16 +14,9 @@
   NetAddress myRemoteLocation;
 
 
-  //Mis variables OSC
-  float visual01Bang;
-  float visual02Bang;
-  float visual03Bang;
-  float visual04Bang;
-  float visual05Bang;
-  float visual06Bang;
-  float visual07Bang;
-  float visual08Bang;
-  float visual09Bang;
+
+  float [][] visualGridBang;
+  float [][] visualGridToggle;
 
   float flash01;
   float strobo01;
@@ -31,10 +24,21 @@
 
 
 
-  OscFeed(String remoteLocation,int thisPort,int thatPort,BPM BPM) {
-    oscP5 = new OscP5(this, thisPort);//12000
-    myRemoteLocation = new NetAddress(remoteLocation, thatPort);//12001
+  OscFeed(BPM BPM) {
+    oscP5 = new OscP5(this, MAC_RECEIVE_PORT);//12000
+    myRemoteLocation = new NetAddress(IPAD_IP, IPAD_RECEIVE_PORT);//12001
     this.BPM = BPM;
+    visualGridBang = new float[GRID_BANG_WIDTH][GRID_BANG_HEIGHT];
+    visualGridToggle = new float[GRID_BANG_WIDTH][GRID_BANG_HEIGHT];
+
+    for (int i = 0; i < GRID_BANG_WIDTH; ++i) {
+      for (int j = 0; j < GRID_BANG_HEIGHT; ++j) {
+        visualGridBang[i][j] = 0;
+        visualGridToggle[i][j] = 0;     
+      }
+    }
+
+
   }
 
 
@@ -100,62 +104,28 @@
   Patterns de visuales
   */
 
-  if (theOscMessage.checkAddrPattern("/visualbang/1/1")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual01Bang = theOscMessage.get(0).floatValue();
+
+  for (int i = 0; i < GRID_BANG_WIDTH; ++i) {
+    for (int j = 0; j < GRID_BANG_HEIGHT; ++j) {
+      if (theOscMessage.checkAddrPattern("/visualbang/"+(int(j)+int(1))+"/"+(int(i)+int(1)))==true) {
+        println("/visualbang/"+(int(j)+int(1))+"/"+(int(i)+int(1)));
+        if (theOscMessage.checkTypetag("f")) {
+          visualGridBang[i][j] = theOscMessage.get(0).floatValue();
+        }
+      }
     }
   }
 
-  if (theOscMessage.checkAddrPattern("/visualbang/1/2")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual02Bang = theOscMessage.get(0).floatValue();
+  for (int i = 0; i < GRID_TOGGLE_WIDTH; ++i) {
+    for (int j = 0; j < GRID_TOGGLE_HEIGHT; ++j) {
+      if (theOscMessage.checkAddrPattern("/visualtoggle/"+(int(j)+int(1))+"/"+(int(i)+int(1)))==true) {
+        println("/visualtoggle/"+(int(j)+int(1))+"/"+(int(i)+int(1)));
+        if (theOscMessage.checkTypetag("f")) {
+          visualGridToggle[i][j] = theOscMessage.get(0).floatValue();
+        }
+      }
     }
   }
-
-  if (theOscMessage.checkAddrPattern("/visualbang/1/3")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual03Bang = theOscMessage.get(0).floatValue();
-    }
-  }
-
-  if (theOscMessage.checkAddrPattern("/visualbang/1/4")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual04Bang = theOscMessage.get(0).floatValue();
-    }
-  }
-
-  if (theOscMessage.checkAddrPattern("/visualbang/1/5")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual05Bang = theOscMessage.get(0).floatValue();
-    }
-  }
-
-  if (theOscMessage.checkAddrPattern("/visualbang/1/6")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual06Bang = theOscMessage.get(0).floatValue();
-    }
-  }
-
-  if (theOscMessage.checkAddrPattern("/visualbang/1/7")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual07Bang = theOscMessage.get(0).floatValue();
-    }
-  }
-
-
-  if (theOscMessage.checkAddrPattern("/visualbang/1/8")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual08Bang = theOscMessage.get(0).floatValue();
-    }
-  }
-
-  if (theOscMessage.checkAddrPattern("/visualbang/1/9")==true) {
-    if (theOscMessage.checkTypetag("f")) {
-      visual09Bang = theOscMessage.get(0).floatValue();
-    }
-  }
-
-
 
 
   //Efectos
@@ -168,7 +138,7 @@
 
   if (theOscMessage.checkAddrPattern("/FX/strobo1x")==true) {
     if (theOscMessage.checkTypetag("f")) {
-        strobo01 = theOscMessage.get(0).floatValue();
+      strobo01 = theOscMessage.get(0).floatValue();
     }
   }
 
