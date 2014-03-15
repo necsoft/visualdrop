@@ -33,7 +33,11 @@
 
   //Booleanos de cambio de compas
   Boolean cambiocompas=false;
+  Boolean cambio2compases=false;
+  Boolean cambio4compases=false;
+  Boolean cambio8compases=false;
   Boolean cambiobeat=false;
+
 
   //Importado para mandar los momentos a los pills
   OscFeed oscFeed;
@@ -62,41 +66,72 @@
 
 
   void run() {
+
+
+
     msXBeat = 1000/(tempo/60.0);
 
     momentoBeat = (millis() - startTime) / msXBeat;
     momentoCompas = ( (millis() - startTime) / msXBeat) / numeradorCompas;
 
-
     //Checkeo si en esta vuelva se cambio el compas
     if(cantidadCompases != int(int(momentoBeat)/numeradorCompas)){
-      //println("Cambio de compas");
+      println("Cambio de compas");
       cambiocompas=true;
-      }else{
-        cambiocompas=false;
-      }
+    }else{
+      cambiocompas=false;
+    }
+
+    if(int(cantidadBeats)%8 == 0 && cambio2compases == false){
+      println("2 compases");
+      cambio2compases = true;
+    }else if(int(cantidadBeats)%8 != 0){
+      cambio2compases = false;
+    }
+
+    if(int(cantidadBeats)%16 == 0 && cambio4compases == false){
+      println("4 compases");
+      cambio4compases = true;
+    }else if(int(cantidadBeats)%16 != 0){
+      cambio4compases = false;
+    }
+
+    if(int(cantidadBeats)%32 == 0 && cambio8compases == false){
+      println("8 compases");
+      cambio8compases = true;
+    }else if(int(cantidadBeats)%32 != 0){
+      cambio8compases = false;
+    }
 
 
     //Checkeo si en esta vuelta se cambio el beat
     if(cantidadBeats != int(momentoBeat)){
       cambiobeat=true;
-      }else{
-        cambiobeat=false;
-      }
-
-      cantidadBeats = int(momentoBeat);
-      cantidadCompases = int(int(momentoBeat)/numeradorCompas);
-
-      momentoBeat -= int(momentoBeat);
-      momentoCompas -= int(momentoCompas);
-
+    }else{
+      cambiobeat=false;
     }
+
+    cantidadBeats = int(momentoBeat);
+    cantidadCompases = int(int(momentoBeat)/numeradorCompas);
+
+    momentoBeat -= int(momentoBeat);
+    momentoCompas -= int(momentoCompas);
+
+  }
+
+
+
+    //Sync
 
     void syncBPM(float syncTime) {
       startTime = syncTime;
     }
 
     
+
+
+
+    //Tapper
 
     void tap(){
       tapDistance[indiceTap] = millis() - tapTime[indiceTap];

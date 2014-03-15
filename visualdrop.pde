@@ -39,7 +39,7 @@ final int GRID_TOGGLE_WIDTH = 7;
 final int GRID_TOGGLE_HEIGHT = 3;
 
 //BPM
-int tempo = 120;
+int tempo = 119;
 int numeradorCompas = 4;
 
 //-------------------------------------------------------------//
@@ -54,6 +54,7 @@ void setup() {
 
 void draw() {
   vd.run();
+
 }
 
 

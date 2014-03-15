@@ -15,6 +15,9 @@
   float [][] visualGridToggle;
 
   float flash01;
+  float background;
+  float glitch;
+  float paleta;
 
   OscFeed(BPM BPM) {
     oscP5 = new OscP5(this, MAC_RECEIVE_PORT);//12000
@@ -22,6 +25,12 @@
     this.BPM = BPM;
     visualGridBang = new float[GRID_BANG_WIDTH][GRID_BANG_HEIGHT];
     visualGridToggle = new float[GRID_BANG_WIDTH][GRID_BANG_HEIGHT];
+
+    //Variables de efecto
+    background = 1;
+    glitch = 0;
+    paleta = 1;
+
 
     for (int i = 0; i < GRID_BANG_WIDTH; ++i) {
       for (int j = 0; j < GRID_BANG_HEIGHT; ++j) {
@@ -120,6 +129,28 @@
       flash01 = theOscMessage.get(0).floatValue();
     }
   }
+
+  // NO BACKGROUND
+  if (theOscMessage.checkAddrPattern("/effects/background")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      background = theOscMessage.get(0).floatValue();
+    }
+  }
+
+  // GLITCH
+  if (theOscMessage.checkAddrPattern("/effects/glitch")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      glitch = theOscMessage.get(0).floatValue();
+    }
+  }
+
+  // GLITCH
+  if (theOscMessage.checkAddrPattern("/color/paleta")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      paleta = theOscMessage.get(0).floatValue();
+    }
+  }
+
 
 }
 };

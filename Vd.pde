@@ -36,7 +36,7 @@ class Vd{
 	}
 
 	void run(){
-		if(visuals.showBackground == true){
+		if(oscFeed.background == 1){
 			background(0);
 		}
 
@@ -47,6 +47,23 @@ class Vd{
 		checkPatterns();//Checkea las rutas OSC
 
 		visuals.passMe(colorFeed);
+
+		if(oscFeed.glitch == 1){
+			applyGlitch();
+		}else{
+			blendMode(BLEND);
+		}
+
+		if(oscFeed.paleta == 1){
+			colorFeed.setPaleta(1);
+			oscFeed.paleta = 0;
+		}
+
+		if(oscFeed.paleta == 2){
+			colorFeed.setPaleta(2);
+			oscFeed.paleta = 0;
+		}
+
 	}
 
 
