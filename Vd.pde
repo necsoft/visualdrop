@@ -64,6 +64,27 @@ class Vd{
 			oscFeed.paleta = 0;
 		}
 
+		if(oscFeed.paleta == 3){
+			colorFeed.setPaleta(3);
+			oscFeed.paleta = 0;
+		}
+
+		if(oscFeed.paleta == 4){
+			colorFeed.setPaleta(4);
+			oscFeed.paleta = 0;
+		}
+
+		if(oscFeed.paleta == 5){
+			colorFeed.setPaleta(5);
+			oscFeed.paleta = 0;
+		}
+
+		if(oscFeed.paleta == 6){
+			colorFeed.setPaleta(6);
+			oscFeed.paleta = 0;
+		}
+
+
 	}
 
 

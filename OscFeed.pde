@@ -148,6 +148,7 @@
   if (theOscMessage.checkAddrPattern("/color/paleta")==true) {
     if (theOscMessage.checkTypetag("f")) {
       paleta = theOscMessage.get(0).floatValue();
+      println("paleta: "+paleta);
     }
   }
 

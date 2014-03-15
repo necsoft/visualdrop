@@ -32,6 +32,7 @@
     visual04 = new Visual04(this);
     visual05 = new Visual05(this);
     visual06 = new Visual06(this);
+    visual07 = new Visual07(this);
 
     colorFeed = _colorFeed;
 
