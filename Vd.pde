@@ -39,7 +39,6 @@ class Vd{
 		if(oscFeed.background == 1){
 			background(0);
 		}
-
 		BPM.tempo = BPM.tempoAproximado; //
 		BPM.run();
 
@@ -51,7 +50,7 @@ class Vd{
 		if(oscFeed.glitch == 1){
 			applyGlitch();
 		}else{
-			blendMode(BLEND);
+  		blendMode(BLEND);
 		}
 
 		if(oscFeed.paleta == 1){
@@ -83,6 +82,8 @@ class Vd{
 			colorFeed.setPaleta(6);
 			oscFeed.paleta = 0;
 		}
+
+
 
 
 	}
@@ -171,5 +172,10 @@ class Vd{
 		} 
 
 	}
+
+
+
+
+
 
 }

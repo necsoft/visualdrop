@@ -67,8 +67,6 @@
 
   void run() {
 
-
-
     msXBeat = 1000/(tempo/60.0);
 
     momentoBeat = (millis() - startTime) / msXBeat;
@@ -76,31 +74,23 @@
 
     //Checkeo si en esta vuelva se cambio el compas
     if(cantidadCompases != int(int(momentoBeat)/numeradorCompas)){
-      println("Cambio de compas");
+      // println("Cambio de compas");
       cambiocompas=true;
+
+
+      if(cantidadCompases%2==0){
+        // println("Cambio 2 compases");
+        cambio2compases = true;
+      }
+
+      if(cantidadCompases%4==0){
+        // println("Cambio 4 compases");
+        cambio4compases = true;
+      }
     }else{
       cambiocompas=false;
-    }
-
-    if(int(cantidadBeats)%8 == 0 && cambio2compases == false){
-      println("2 compases");
-      cambio2compases = true;
-    }else if(int(cantidadBeats)%8 != 0){
-      cambio2compases = false;
-    }
-
-    if(int(cantidadBeats)%16 == 0 && cambio4compases == false){
-      println("4 compases");
-      cambio4compases = true;
-    }else if(int(cantidadBeats)%16 != 0){
-      cambio4compases = false;
-    }
-
-    if(int(cantidadBeats)%32 == 0 && cambio8compases == false){
-      println("8 compases");
-      cambio8compases = true;
-    }else if(int(cantidadBeats)%32 != 0){
-      cambio8compases = false;
+      cambio2compases=false;
+      cambio4compases=false;
     }
 
 

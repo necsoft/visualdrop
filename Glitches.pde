@@ -1,4 +1,5 @@
 void applyGlitch(){
+  pushStyle();
   if(random(1) < 0.3){
   applyGlitch02(2);
   }
@@ -23,6 +24,7 @@ void applyGlitch(){
   }else{
   blendMode(BLEND);
   }
+  popStyle();
 }
 
 
