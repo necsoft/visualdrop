@@ -1,26 +1,30 @@
-  class Visual05{
+  class Visual05 extends VisualParent{
     Visuals visuals;
-    color colorActual;
-    int nroColorActual = 0;
+
     Visual05(Visuals _visuals){
       visuals = _visuals;
     }
 
 
     void show(){
-      fill(#00FF88);
-      colorActual = color(255);
-      drawCross(width/2, height/2, visuals.BPM.momentoCompas*width*0.5, 45, 0.2);
+      updateBPM(visuals);
+      updateColorFeed(visuals);
+
+
+        pushMatrix();
+        translate(width/2,height/2);
+        fill(paleta[color01]);
+        drawCross(0, 0, momentoCompas*width*0.5,momentoBeat*180, 0.2);
+        popMatrix();      
+
+      if(cambiobeat){
+        flipColors();
+      }
     }
 
 
 
     void drawCross(float posx, float posy, float tam, float rot, float thickness) {
-      if (visuals.BPM.cambiobeat){
-        nroColorActual = int(random(4));
-      }
-
-      fill(visuals.colorFeed.paletaActual[nroColorActual]);
       pushMatrix();
       translate(posx, posy);
       rotate(radians(rot));

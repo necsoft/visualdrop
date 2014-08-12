@@ -1,4 +1,4 @@
-  class Visual06{
+  class Visual06 extends VisualParent{
     Visuals visuals;
     int nroColorActual = 0;
     Visual06(Visuals _visuals){
@@ -6,13 +6,18 @@
     }
 
     void show(){
-      if (visuals.BPM.cambiocompas == true){
+      updateBPM(visuals);
+      updateColorFeed(visuals);
+      noStroke();
+
+      if (cambiocompas == true){
         nroColorActual = int(random(4));
       }
-      fill(visuals.colorFeed.paletaActual[nroColorActual]);
-      for (int i = 0; i<40; i++){
+      
+      for (int i = 0; i<90; i++){
         for (int j = 0; j<40; j++){
-          visuals.SRTKshapes.drawCross(i*20, j*20, visuals.BPM.momentoCompas*width*0.02, visuals.BPM.momentoBeat*90, 0.2);
+          fill(visuals.colorFeed.paletaActual[(i+j)%4],200);
+          visuals.SRTKshapes.drawCross(i*20, j*20, sin(map(momentoCompas,0,1,-1,1))*width*0.01, sin(map(momentoCompas,0,1,-1,1))*360, 0.2);
         }
       }
     }

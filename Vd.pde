@@ -29,6 +29,7 @@ class Vd{
 
 		BPM = new BPM(tempo, numeradorCompas,oscFeed);
 		colorFeed = new ColorFeed();
+		audioFeed = new AudioFeed();
 		
 		visuals = new Visuals(BPM,colorFeed);
 		oscFeed = new OscFeed(BPM);
@@ -50,7 +51,7 @@ class Vd{
 		if(oscFeed.glitch == 1){
 			applyGlitch();
 		}else{
-  		blendMode(BLEND);
+			blendMode(BLEND);
 		}
 
 		if(oscFeed.paleta == 1){
@@ -82,6 +83,7 @@ class Vd{
 			colorFeed.setPaleta(6);
 			oscFeed.paleta = 0;
 		}
+
 
 
 
@@ -131,6 +133,27 @@ class Vd{
 					if(i == 6 && j == 0){
 						visuals.visual07.show();
 					}
+					// if(i == 0 && j == 1){
+					// 	visuals.visual08.show();
+					// }
+					// if(i == 1 && j == 1){
+					// 	visuals.visual09.show();
+					// }
+					// if(i == 2 && j == 1){
+					// 	visuals.visual10.show();
+					// }				
+					// if(i == 3 && j == 1){
+					// 	visuals.visual11.show();
+					// }
+					// if(i == 4 && j == 1){
+					// 	visuals.visual12.show();
+					// }
+					// if(i == 5 && j == 1){
+					// 	visuals.visual13.show();
+					// }
+					// if(i == 6 && j == 1){
+					// 	visuals.visual14.show();
+					// }					
 				}
 
 			}
@@ -170,6 +193,13 @@ class Vd{
 		if (oscFeed.flash01 == 1) {
 			visuals.flash01();
 		} 
+
+		
+		hint(DISABLE_DEPTH_TEST);
+		noStroke();
+		fill(0,vd.oscFeed.opacity*255);
+		rect(0,0, width, height);
+		hint(ENABLE_DEPTH_TEST);
 
 	}
 

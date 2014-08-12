@@ -16,6 +16,8 @@
   //Momentos utiles
   float momentoBeat;
   float momentoCompas;
+  float momento4Compases;
+  float momento8Compases;
   int cantidadBeats;
   int cantidadCompases;
   
@@ -71,6 +73,8 @@
 
     momentoBeat = (millis() - startTime) / msXBeat;
     momentoCompas = ( (millis() - startTime) / msXBeat) / numeradorCompas;
+    momento4Compases = ( (millis() - startTime) / (msXBeat*4)) / numeradorCompas;
+    momento8Compases = ( (millis() - startTime) / (msXBeat*8)) / numeradorCompas;
 
     //Checkeo si en esta vuelva se cambio el compas
     if(cantidadCompases != int(int(momentoBeat)/numeradorCompas)){
@@ -106,6 +110,8 @@
 
     momentoBeat -= int(momentoBeat);
     momentoCompas -= int(momentoCompas);
+    momento4Compases -= int(momento4Compases);
+    momento8Compases -= int(momento8Compases);
 
   }
 

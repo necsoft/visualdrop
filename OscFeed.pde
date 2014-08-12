@@ -1,4 +1,4 @@
-/*//////////////////////////////////////////////////////////////////////////
+ /*//////////////////////////////////////////////////////////////////////////
  oscFeed
  ------------------------------------------------------------------------
  Esta es la clase que simplifica un poco el uso de OSC dentro de 
@@ -18,6 +18,7 @@
   float background;
   float glitch;
   float paleta;
+  float opacity;
 
   OscFeed(BPM BPM) {
     oscP5 = new OscP5(this, MAC_RECEIVE_PORT);//12000
@@ -149,6 +150,14 @@
     if (theOscMessage.checkTypetag("f")) {
       paleta = theOscMessage.get(0).floatValue();
       println("paleta: "+paleta);
+    }
+  }
+
+  // GLITCH
+  if (theOscMessage.checkAddrPattern("/opacity")==true) {
+    if (theOscMessage.checkTypetag("f")) {
+      opacity = theOscMessage.get(0).floatValue();
+      println("opacity: "+opacity);
     }
   }
 

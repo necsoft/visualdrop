@@ -10,7 +10,7 @@
     Visual04(Visuals _visuals){
       visuals = _visuals;
 
-      cantidadloadings = 40;
+      cantidadloadings = 60;
 
       activeLoadings = new float[cantidadloadings+1];
       loadingDesfases = new float[cantidadloadings+1];
@@ -65,11 +65,11 @@
   void loadingBar(float posx,float posy, float tam,float desfase){
     rectMode(CENTER);
     
-    rect(posx, posy, tam, 4);
+    rect(posx, posy, tam, 10);
     rectMode(CORNER);
     noStroke();
     fill(255);
-    rect(posx-posx+posx*0.1, posy-2, 100+visuals.BPM.momentoCompas*width*0.8+desfase*50*-1, 4);
+    //rect(posx-posx+posx*0.1, posy-2, 100+visuals.BPM.momentoCompas*width*0.8+desfase*50*-1, 4);
   }
 
 }

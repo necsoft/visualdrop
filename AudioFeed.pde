@@ -6,7 +6,6 @@ class AudioFeed{
 	AudioFeed(){
 		minim = new Minim(this);
 		in = minim.getLineIn();
-
 	}
 
 

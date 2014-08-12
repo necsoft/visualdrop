@@ -1,33 +1,26 @@
-  class Visual01{
+  class Visual01 extends VisualParent{
     Visuals visuals;
-    int color01,color02;
     Visual01(Visuals _visuals){
       visuals = _visuals;
       init();
     }
 
     void show(){
+      updateBPM(visuals);
+      updateColorFeed(visuals);
       noStroke();
-      fill(visuals.colorFeed.paletaActual[color01]);
-      ellipse(width/2, height/2, visuals.BPM.momentoBeat*width/2, visuals.BPM.momentoBeat*width/2);
-      fill(visuals.colorFeed.paletaActual[color02]);
-      ellipse(width/2, height/2, visuals.BPM.momentoCompas*width/2, visuals.BPM.momentoCompas*width/2);
 
-      if(visuals.BPM.cambio2compases){
-        changeColors();
+      fill(paleta[color01]);
+      ellipse(width/2, height/2, momentoBeat*width/2, momentoBeat*width/2);
+      fill(paleta[color02]);
+      ellipse(width/2, height/2, momentoCompas*width/2, momentoCompas*width/2);
+      fill(paleta[color03],100);
+      ellipse(width/2, height/2, momentoCompas*width/4, momentoCompas*width/4);
+      
+      if(cambio2compases){
+        flipColors();
       }
     }
 
-
-    void init(){
-      color01 = 1;
-      color02 = 3;
-    }
-
-
-    void changeColors(){
-      color01 = int(random(0,5));
-      color02 = int(random(0,5));
-    }
 
   }

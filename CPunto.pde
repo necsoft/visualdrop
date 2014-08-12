@@ -10,7 +10,7 @@ class CPunto {
     if (mousePressed) {
       if (!mover) {
         float dis = dist(mouseX, mouseY, x, y);
-        if (dis < 10) mover = true;
+        if (dis < 50) mover = true;
         else mover = false;
       }
     }
@@ -22,8 +22,9 @@ class CPunto {
     dibujar();
   }
   void dibujar() {
+    strokeWeight(1);
     stroke(255);
     fill(255,100);
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, 50, 50);
   }
 }

@@ -1,8 +1,8 @@
-  class Visual07{
+  class Visual07 extends VisualParent{
     Visuals visuals;
 
-    int cantidadparticulas = 300;
-    int stepSize = 40;
+    int cantidadparticulas = 1000;
+    int stepSize = 20;
 
     int [] posx;
     int [] posy;
@@ -24,23 +24,30 @@
     }
 
     void show(){
+      updateBPM(visuals);
+      updateColorFeed(visuals);
+      
       visuals.showBackground = true;
+      
       fill(coloractual);
       for (int i = 0; i<cantidadparticulas-1; i++){
       
       
       
       noStroke();
-      ellipse(posx[i], posy[i], 10, 10);
-      stroke(40,100);
+      fill(paleta[color01],100);
+
+      ellipse(posx[i], posy[i], sin(map(momentoCompas,0,1,-1,1))*4+5, sin(map(momentoCompas,0,1,-1,1))*4+5);
+      
       //line(posx[i], posy[i], width/2, height/2);
 
       }
       step();
 
-      if(visuals.BPM.cambiocompas){
+      if(cambio4compases){
        reset();
-       coloractual = visuals.colorFeed.paletaActual[int(random(4))];
+       flipColors();
+       stepSize = int(random(2,20));
       }
 
 
@@ -56,7 +63,7 @@
         posy[i] = height/2;
       }
 
-      stepSize = int(random(10,30));
+      
 
     }
 

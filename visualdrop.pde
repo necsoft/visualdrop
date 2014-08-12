@@ -24,14 +24,17 @@ import ddf.minim.*;
 // FullScreen fs; 
 Vd vd;
 
+
 // Constantes ---------------------------------------------//
 
+
 final int FIRST_MONITOR_WIDTH = 1440;
-final int SECOND_SCREEN_WIDTH = 1920;
-final int SECOND_SCREEN_HEIGHT = 1080;
+final int OUTPUT_SCREEN_WIDTH = 1280;
+final int OUTPUT_SCREEN_HEIGHT = 720; 
+
 final int MAC_RECEIVE_PORT = 12000;
 final int IPAD_RECEIVE_PORT = 12001;
-final String IPAD_IP = "192.168.0.103";
+final String IPAD_IP = "192.168.0.100";
 
 final int GRID_BANG_WIDTH = 7;
 final int GRID_BANG_HEIGHT = 3;
@@ -51,48 +54,51 @@ CPunto[] mascara;
 
 
 void setup() {
-  size(SECOND_SCREEN_WIDTH , SECOND_SCREEN_HEIGHT,OPENGL);
-  frame.setLocation(FIRST_MONITOR_WIDTH,0);
-  vd = new Vd(tempo,numeradorCompas);
-  mascara = new CPunto[4];
-  mascara[0] = new CPunto(100, 100);
-  mascara[1] = new CPunto(100, height-100);
-  mascara[2] = new CPunto(width-100, height-100);
-  mascara[3] = new CPunto(width-100, 100);
-  frameRate(60);
+ size(OUTPUT_SCREEN_WIDTH , OUTPUT_SCREEN_HEIGHT,OPENGL);
+ frame.setLocation(FIRST_MONITOR_WIDTH,0);
+ vd = new Vd(tempo,numeradorCompas); 
+ mascara = new CPunto[4];
+ mascara[0] = new CPunto(30, 30);
+ mascara[1] = new CPunto(30, height-30);
+ mascara[2] = new CPunto(width-30, height-30);
+ mascara[3] = new CPunto(width-30, 30);
+ frameRate(60);
 }
 
 void draw() {
   blendMode(BLEND);
   vd.run();
-
-
-
-
-
   hint(DISABLE_DEPTH_TEST);
   mappingMask();
   hint(ENABLE_DEPTH_TEST);
-
+  
+  
+ mascara[0] = new CPunto(30, 30);
+ mascara[1] = new CPunto(30, height-30);
+ mascara[2] = new CPunto(width-30, height-30);
+ mascara[3] = new CPunto(width-30, 30);
 }
 
 
-public void init(){
-  frame.removeNotify();
-  frame.setUndecorated(true);
-  frame.setAlwaysOnTop(true); 
-  frame.addNotify();
-  super.init();
-}
+
+//Este bloque se utiliza cuando queremos usar fullscreen
+
+// public void init(){
+//   frame.removeNotify();
+//   frame.setUndecorated(true);
+//   frame.setAlwaysOnTop(true); 
+//   frame.addNotify();
+//   super.init();
+// }
 
 
 
 void keyReleased(){
 
-    if (key == 'm' || key == 'M') {
-      calibrar = !calibrar;
-      println("calibrar: "+calibrar);
-    }
+  if (key == 'm' || key == 'M') {
+    calibrar = !calibrar;
+    println("calibrar: "+calibrar);
+  }
 
 }
 
